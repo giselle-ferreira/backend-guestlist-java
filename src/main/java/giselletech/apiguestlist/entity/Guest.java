@@ -1,21 +1,19 @@
 package giselletech.apiguestlist.entity;
 
-import giselletech.apiguestlist.controller.dto.GuestRequestDTO;
+import giselletech.apiguestlist.dto.GuestRequestDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Table(name = "guests")
 @Entity(name = "guests")
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Guest {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
