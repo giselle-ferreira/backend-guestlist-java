@@ -47,12 +47,6 @@ public class GuestService {
         return ResponseEntity.status(HttpStatus.CREATED).body(guestRepository.save(guest));
     }
 
-//    public Guest update(Guest guest) {
-//        Guest guestToUpdate = guestRepository.findById(guest.getId()).get();
-//        guestToUpdate.setName(guest.getName().toUpperCase());
-//        return guestRepository.save(guestToUpdate);
-//    }
-
         public ResponseEntity update(Long id, GuestRequestDTO guestRequestDTO) {
         Optional<Guest> guestOptional = guestRepository.findById(id);
 
