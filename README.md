@@ -1,51 +1,25 @@
 ## About
 Rest API developed with Java, Spring Boot and PostgreSQL.
+
 <br/>
 
 ## Requests
-`
-GET /guests
-`
-+ Returns guest list.
-```
-curl --location 'http://localhost:8080/guests'
-```
-<br/>
 
-`
-POST /guests/create
-`
-+ Adds a new guest.
 ```
-curl --location 'http://localhost:8080/guests/create' \
---header 'Content-Type: application/json' \
---data '{
-    "name": "João Maranhão"
-}'
+GET /guests -- Returns guest list.
 ```
-<br/>
-
-`
-PUT /guests
-`
-+ Updates the name of a guest.
 ```
-curl --location --request PUT 'http://localhost:8080/guests' \
---header 'Content-Type: application/json' \
---data '{
-        "id": "5fbc11e7",
-        "name": "GISELLE FERREIRa"
-    }'
+GET /guests -- Returns one guest.
 ```
-<br/>
-
-`
-DELETE /guests/{id}
-`
-+ Removes a guest.
 ```
-curl --location --request DELETE 'http://localhost:8080/guests/ca5bdaa4'
+POST /guests -- Adds a new guest.
 ```
+```
+PUT /guests/{id} -- Updates the name of a guest.
+```
+```
+DELETE /guests/{id} -- Removes a guest.
+``` 
 
 <br/>
 
@@ -53,7 +27,8 @@ curl --location --request DELETE 'http://localhost:8080/guests/ca5bdaa4'
 
 <p align="left">
 <img alt="Java" src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white" height="27" />  
-<img alt="SpringBoot" src="https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white" height="27" />
+<img alt="Spring Boot" src="https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white" height="27" />
+<img alt="PostgreSQL" src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" height="27" />
 </p>
 
 <br/>
