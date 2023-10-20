@@ -20,7 +20,7 @@ public class GuestController {
     private GuestService guestService;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @GetMapping("/")
+    @GetMapping
     public List<GuestResponseDTO> getAll(){
         return guestService.getAll();
     }
@@ -32,7 +32,7 @@ public class GuestController {
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity add(@RequestBody GuestRequestDTO guestRequestDTO){
         return guestService.add(guestRequestDTO);
     }
