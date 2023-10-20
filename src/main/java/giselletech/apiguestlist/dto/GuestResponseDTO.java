@@ -8,4 +8,5 @@ public record GuestResponseDTO(Long id, String name) {
 
         this(guest.getId(), guest.getName());
     }
+
 }

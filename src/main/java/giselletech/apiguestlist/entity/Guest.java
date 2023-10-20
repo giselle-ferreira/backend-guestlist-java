@@ -13,7 +13,7 @@ import lombok.*;
 public class Guest {
 
 
-    @Id //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Long id;
     private String name;
 
