@@ -5,6 +5,7 @@ import giselletech.apiguestlist.dto.GuestResponseDTO;
 import giselletech.apiguestlist.entity.Guest;
 import giselletech.apiguestlist.myutils.MyUtils;
 import giselletech.apiguestlist.repository.GuestRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 @Service
+@Slf4j
 public class GuestService {
 
     @Autowired
@@ -38,13 +40,18 @@ public class GuestService {
     public ResponseEntity add(GuestRequestDTO guestRequestDTO){
         Guest guest = new Guest(guestRequestDTO);
 
-        guest.setId(MyUtils.generateRandomId());
-        String normalizedName = Normalizer.normalize(guest.getName(), Normalizer.Form.NFD);
-        Pattern padrao = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
-        String nameModified = padrao.matcher(normalizedName).replaceAll("");
-        guest.setName(nameModified.toUpperCase());
+        try {
+            guest.setId(MyUtils.generateRandomId());
+            String normalizedName = Normalizer.normalize(guest.getName(), Normalizer.Form.NFD);
+            Pattern padrao = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+            String nameModified = padrao.matcher(normalizedName).replaceAll("");
+            guest.setName(nameModified.toUpperCase());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(guestRepository.save(guest));
+            return ResponseEntity.status(HttpStatus.CREATED).body(guestRepository.save(guest));
+        } catch (Exception e){
+            log.error("Ocorreu um erro.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
+        }
     }
 
         public ResponseEntity update(Long id, GuestRequestDTO guestRequestDTO) {
@@ -63,4 +70,15 @@ public class GuestService {
         return ResponseEntity.status(HttpStatus.OK).body("Convidado ID= " +
                 id + " deletado.");
     }
+
+    public ResponseEntity deleteAll() {
+        guestRepository.deleteAll();
+        return ResponseEntity.status(HttpStatus.OK).body("Convidados deletados");
+    }
 }
+
+
+
+
+
+

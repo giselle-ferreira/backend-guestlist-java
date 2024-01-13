@@ -14,30 +14,28 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/guests")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class GuestController {
 
     @Autowired
     private GuestService guestService;
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+
     @GetMapping
     public List<GuestResponseDTO> getAll(){
         return guestService.getAll();
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/{id}")
     public Optional<Guest> getOne(@PathVariable Long id){
         return guestService.getOne(id);
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
     public ResponseEntity add(@RequestBody GuestRequestDTO guestRequestDTO){
         return guestService.add(guestRequestDTO);
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
     public ResponseEntity update(@PathVariable Long id, @RequestBody GuestRequestDTO guest) {
         return guestService.update(id, guest);
@@ -46,6 +44,11 @@ public class GuestController {
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Long id){
         return guestService.deleteById(id);
+    }
+
+    @DeleteMapping
+    public ResponseEntity deleteAllGuests(){
+        return guestService.deleteAll();
     }
 
 }
