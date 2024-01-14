@@ -19,6 +19,9 @@ PUT /guests/{id} -- Updates the name of a guest.
 ```
 ```
 DELETE /guests/{id} -- Removes a guest.
+```
+```
+DELETE /guests -- Removes all guests.
 ``` 
 
 <br/>
